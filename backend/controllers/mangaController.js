@@ -13,11 +13,13 @@ const getMangaNames = async (req, res) => {
         for (const items of mangaFolder) {
             if (mangas === path.basename(items, '.jpeg')) {
                 const dbManga = await Manga.findOne({ name: mangas.replace('-', ' ') }).exec()
-                returnItems.push({
-                    name: dbManga.name,
-                    id: dbManga._id,
-                    image: fs.readFileSync(`${mangaFolderUrl}/${items}`, 'base64')
-                })
+                if(dbManga){
+                    returnItems.push({
+                        name: dbManga?.name,
+                        id: dbManga?._id,
+                        image: fs.readFileSync(`${mangaFolderUrl}/${items}`, 'base64')
+                    })
+                }
             }
         }
     }

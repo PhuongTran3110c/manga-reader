@@ -22,6 +22,7 @@ const MangaCard = (props) => {
 
     const mangaName = (name) => {
         const newName = []
+        console.log(name)
         name.split(' ').forEach(item => {
             newName.push(item.charAt(0).toUpperCase() + item.slice(1))
         })
